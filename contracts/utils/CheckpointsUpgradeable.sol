@@ -162,8 +162,9 @@ library CheckpointsUpgradeable {
         uint256 low,
         uint256 high
     ) private view returns (uint256) {
+        uint256 mid;
         while (low < high) {
-            uint256 mid = MathUpgradeable.average(low, high);
+            mid = MathUpgradeable.average(low, high);
             if (_unsafeAccess(self, mid)._blockNumber > key) {
                 high = mid;
             } else {
@@ -185,8 +186,9 @@ library CheckpointsUpgradeable {
         uint256 low,
         uint256 high
     ) private view returns (uint256) {
+        uint256 mid;
         while (low < high) {
-            uint256 mid = MathUpgradeable.average(low, high);
+            mid = MathUpgradeable.average(low, high);
             if (_unsafeAccess(self, mid)._blockNumber < key) {
                 low = mid + 1;
             } else {
@@ -310,8 +312,9 @@ library CheckpointsUpgradeable {
         uint256 low,
         uint256 high
     ) private view returns (uint256) {
+        uint256 mid;
         while (low < high) {
-            uint256 mid = MathUpgradeable.average(low, high);
+            mid = MathUpgradeable.average(low, high);
             if (_unsafeAccess(self, mid)._key > key) {
                 high = mid;
             } else {
@@ -333,8 +336,9 @@ library CheckpointsUpgradeable {
         uint256 low,
         uint256 high
     ) private view returns (uint256) {
+        uint256 mid;
         while (low < high) {
-            uint256 mid = MathUpgradeable.average(low, high);
+            mid = MathUpgradeable.average(low, high);
             if (_unsafeAccess(self, mid)._key < key) {
                 low = mid + 1;
             } else {
@@ -461,8 +465,9 @@ library CheckpointsUpgradeable {
         uint256 low,
         uint256 high
     ) private view returns (uint256) {
+        uint256 mid;
         while (low < high) {
-            uint256 mid = MathUpgradeable.average(low, high);
+            mid = MathUpgradeable.average(low, high);
             if (_unsafeAccess(self, mid)._key > key) {
                 high = mid;
             } else {
@@ -484,8 +489,9 @@ library CheckpointsUpgradeable {
         uint256 low,
         uint256 high
     ) private view returns (uint256) {
+        uint256 mid;
         while (low < high) {
-            uint256 mid = MathUpgradeable.average(low, high);
+            mid = MathUpgradeable.average(low, high);
             if (_unsafeAccess(self, mid)._key < key) {
                 low = mid + 1;
             } else {

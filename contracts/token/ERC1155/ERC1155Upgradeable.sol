@@ -214,11 +214,14 @@ contract ERC1155Upgradeable is Initializable, ContextUpgradeable, ERC165Upgradea
 
         _beforeTokenTransfer(operator, from, to, ids, amounts, data);
 
+        uint256 id;
+        uint256 amount;
+        uint256 fromBalance;
         for (uint256 i = 0; i < idsLen; ++i) {
-            uint256 id = ids[i];
-            uint256 amount = amounts[i];
+            id = ids[i];
+            amount = amounts[i];
 
-            uint256 fromBalance = _balances[id][from];
+            fromBalance = _balances[id][from];
             require(fromBalance >= amount, "ERC1155: insufficient balance for transfer");
             unchecked {
                 _balances[id][from] = fromBalance - amount;
@@ -368,11 +371,14 @@ contract ERC1155Upgradeable is Initializable, ContextUpgradeable, ERC165Upgradea
 
         _beforeTokenTransfer(operator, from, address(0), ids, amounts, "");
 
+        uint256 id;
+        uint256 amount;
+        uint256 fromBalance;
         for (uint256 i = 0; i < idsLen; i++) {
-            uint256 id = ids[i];
-            uint256 amount = amounts[i];
+            id = ids[i];
+            amount = amounts[i];
 
-            uint256 fromBalance = _balances[id][from];
+            fromBalance = _balances[id][from];
             require(fromBalance >= amount, "ERC1155: burn amount exceeds balance");
             unchecked {
                 _balances[id][from] = fromBalance - amount;

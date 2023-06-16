@@ -262,8 +262,7 @@ contract TimelockControllerUpgradeable is Initializable, AccessControlUpgradeabl
 
         bytes32 id = hashOperationBatch(targets, values, payloads, predecessor, salt);
         _schedule(id, delay);
-        uint256 targetsLen = targets.length;
-        for (uint256 i = 0; i < targetsLen; ++i) {
+        for (uint256 i = 0; i < targets.length; ++i) {
             emit CallScheduled(id, i, targets[i], values[i], payloads[i], predecessor, delay);
         }
         if (salt != bytes32(0)) {
@@ -346,11 +345,13 @@ contract TimelockControllerUpgradeable is Initializable, AccessControlUpgradeabl
         bytes32 id = hashOperationBatch(targets, values, payloads, predecessor, salt);
 
         _beforeCall(id, predecessor);
-        uint256 targetsLen = targets.length;
-        for (uint256 i = 0; i < targetsLen; ++i) {
-            address target = targets[i];
-            uint256 value = values[i];
-            bytes calldata payload = payloads[i];
+        address target;
+        uint256 value;
+        bytes calldata payload;
+        for (uint256 i = 0; i < targets.length; ++i) {
+            target = targets[i];
+            value = values[i];
+            payload = payloads[i];
             _execute(target, value, payload);
             emit CallExecuted(id, i, target, value, payload);
         }

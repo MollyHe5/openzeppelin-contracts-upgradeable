@@ -119,9 +119,10 @@ abstract contract ERC20VotesUpgradeable is Initializable, IVotesUpgradeable, ERC
 
         uint256 low = 0;
         uint256 high = length;
+        uint256 mid;
 
         if (length > 5) {
-            uint256 mid = length - MathUpgradeable.sqrt(length);
+            mid = length - MathUpgradeable.sqrt(length);
             if (_unsafeAccess(ckpts, mid).fromBlock > blockNumber) {
                 high = mid;
             } else {
@@ -130,7 +131,7 @@ abstract contract ERC20VotesUpgradeable is Initializable, IVotesUpgradeable, ERC
         }
 
         while (low < high) {
-            uint256 mid = MathUpgradeable.average(low, high);
+            mid = MathUpgradeable.average(low, high);
             if (_unsafeAccess(ckpts, mid).fromBlock > blockNumber) {
                 high = mid;
             } else {
